@@ -1,0 +1,14 @@
+language: c
+sudo: required
+services:
+  - docker
+script:
+  - docker build -t epilanthanomai/flurrybot .
+deploy:
+  provider: script
+  script:
+    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+      docker push epilanthanomai/flurrybot
+  on:
+    branch:
+      - develop
