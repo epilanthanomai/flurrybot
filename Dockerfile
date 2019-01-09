@@ -3,7 +3,7 @@ ENV ROOT /opt/flurry
 WORKDIR $ROOT
 
 COPY src $ROOT
-COPY cron/generate.sh /etc/periodic/daily/
+COPY cron/generate /etc/periodic/daily/
 
 RUN apk update && \
     apk add --update \
