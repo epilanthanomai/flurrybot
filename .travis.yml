@@ -8,8 +8,8 @@ deploy:
   provider: script
   script:
     - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker tag flurrybot epilanthanomai/flurrybot:current;
-      docker push epilanthanomai/flurrybot:current;
+      docker tag flurrybot epilanthanomai/flurrybot:latest;
+      docker push epilanthanomai/flurrybot:latest;
       docker tag flurrybot "epilanthanomai/flurrybot:${TRAVIS_TAG#v}";
       docker push "epilanthanomai/flurrybot:${TRAVIS_TAG#v}"
   on:
