@@ -1,8 +1,8 @@
-FROM epilanthanomai/cflakes
+FROM epilanthanomai/cflakes:0.1
 ENV ROOT /opt/flurry
 WORKDIR $ROOT
 
-COPY src $ROOT
+COPY . $ROOT
 COPY cron/generate /etc/periodic/daily/
 
 RUN apk update && \
@@ -12,6 +12,6 @@ RUN apk update && \
       python3 \
       py3-cryptography
 
-RUN pip3 install Mastodon.py
+RUN pip3 install -r requirements.txt
 
 CMD ["/usr/sbin/crond", "-f"]

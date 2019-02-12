@@ -1,2 +1,4 @@
 .*.sw*
 .git
+venv
+env

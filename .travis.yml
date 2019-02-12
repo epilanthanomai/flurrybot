@@ -3,12 +3,14 @@ sudo: required
 services:
   - docker
 script:
-  - docker build -t epilanthanomai/flurrybot .
+  - docker build -t flurrybot .
 deploy:
   provider: script
   script:
     - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-      docker push epilanthanomai/flurrybot
+      docker tag flurrybot epilanthanomai/flurrybot:current;
+      docker push epilanthanomai/flurrybot:current;
+      docker tag flurrybot "epilanthanomai/flurrybot:${TRAVIS_TAG#v}";
+      docker push "epilanthanomai/flurrybot:${TRAVIS_TAG#v}"
   on:
-    branch:
-      - develop
+    tags: true
